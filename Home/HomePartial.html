@@ -1,0 +1,30 @@
+﻿<div>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Hello</h1>
+            <p>This is sample Angular Application where you can search for specific food and view the report of food.</p>
+            <form name="searchForm">
+                <div class="form-group">
+                    <label for="Search">Search by ndbno for Food</label>
+                    <input type="text" ng-change="hideeverything();" name="search" ng-model="searchstring" class="form-control" id="exampleInputEmail1" placeholder="ndbno" required>
+                </div>
+                <button type="submit" ng-disabled="searchForm.search.$error.required" ng-click="dosearch();" class="btn btn-default">Submit</button>
+            </form>
+
+            <div class="alert alert-success" ng-if="showdata" role="alert"><h3>Here is what you searched for:</h3>
+                <h4>{{mydata.report.food.name}}</h4>
+            <button class="btn btn-danger" ng-click="makeitFav(mydata);">Make me Fav</button>
+             <button ng-click="goToDetails(mydata)">Find about this food</button>
+            </div>
+           <div class="alert alert-warning alert-dismissible" ng-if="showerror" role="alert">
+                <h4>{{myerror}}</h4>
+            </div>
+            <div><p ng-if="myfavoriteFood.length < 0">You Don't have any Favorite yet</p><button ng-if="myfavoriteFood.length>0" ng-click="showFav();">Click here to see your Favorite List</button></div>
+        <div ng-if="showfav">
+            <div ng-repeat="fav in myfavoriteFood " class="alert alert-success" role="alert">
+                <h4>{{fav.report.food.name}}</h4>
+                <button ng-click="goToDetails(fav)">Find about this food</button>
+            </div>
+        </div>
+    </div>
+</div>
